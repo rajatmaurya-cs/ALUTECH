@@ -7,6 +7,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Local PDF.js (Offline-capable & ultra fast) -->
+  <script src="pdfjs/pdf.min.js"></script>
   <style>
     * {
       box-sizing: border-box;
@@ -18,155 +20,316 @@
     body, html {
       width: 100%;
       height: 100%;
-      overflow: hidden;
       font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: #0f172a;
+      background: #090d16;
+      color: #f8fafc;
+      overflow: hidden;
       display: flex;
       flex-direction: column;
     }
 
-    /* Top Sticky Navigation Bar */
+    /* Top Sticky Header */
     .viewer-navbar {
-      height: 58px;
+      height: 56px;
       background: #0f172a;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 1rem;
-      gap: 0.75rem;
+      padding: 0 0.75rem;
+      gap: 0.5rem;
       flex-shrink: 0;
       z-index: 100;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
     }
 
     /* Back Button */
-    .btn-back {
+    .btn-nav-back {
       display: inline-flex;
       align-items: center;
-      gap: 0.45rem;
+      gap: 0.4rem;
       background: #1e293b;
       color: #ffffff;
       text-decoration: none;
-      padding: 0.5rem 0.85rem;
+      padding: 0.45rem 0.8rem;
       border-radius: 999px;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-weight: 700;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      transition: all 0.15s ease;
+      border: 1px solid rgba(255, 255, 255, 0.14);
       flex-shrink: 0;
+      transition: all 0.15s ease;
+      cursor: pointer;
     }
 
-    .btn-back:active, .btn-back:hover {
-      background: #334155;
-      color: #38bdf8;
+    .btn-nav-back:active, .btn-nav-back:hover {
+      background: #0284c7;
       border-color: #38bdf8;
-      transform: scale(0.98);
+      color: #ffffff;
+      transform: scale(0.97);
     }
 
-    /* Title */
+    /* Center Title and Page Count */
+    .viewer-title-wrap {
+      flex: 1;
+      min-width: 0;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
     .viewer-title {
-      font-size: 0.92rem;
+      font-size: 0.86rem;
       font-weight: 700;
       color: #f8fafc;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      text-align: center;
-      flex: 1;
-      padding: 0 0.25rem;
+      max-width: 100%;
     }
 
-    /* Download Action Button */
-    .btn-dl {
+    .viewer-page-count {
+      font-size: 0.68rem;
+      color: #94a3b8;
+      font-weight: 600;
+    }
+
+    /* Right Action Group */
+    .viewer-nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      flex-shrink: 0;
+    }
+
+    /* Raw Full View Button */
+    .btn-nav-full {
       display: inline-flex;
       align-items: center;
-      gap: 0.35rem;
+      gap: 0.3rem;
+      background: rgba(56, 189, 248, 0.15);
+      color: #38bdf8;
+      text-decoration: none;
+      padding: 0.45rem 0.65rem;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      transition: all 0.15s ease;
+    }
+
+    .btn-nav-full:active, .btn-nav-full:hover {
+      background: #0284c7;
+      color: #ffffff;
+      border-color: #38bdf8;
+    }
+
+    /* Download Button */
+    .btn-nav-dl {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
       background: #0284c7;
       color: #ffffff;
       text-decoration: none;
-      padding: 0.5rem 0.85rem;
+      padding: 0.45rem 0.75rem;
       border-radius: 999px;
-      font-size: 0.82rem;
+      font-size: 0.78rem;
       font-weight: 700;
       transition: all 0.15s ease;
-      flex-shrink: 0;
     }
 
-    .btn-dl:active, .btn-dl:hover {
+    .btn-nav-dl:active, .btn-nav-dl:hover {
       background: #0369a1;
-      transform: scale(0.98);
+      transform: scale(0.97);
     }
 
-    /* PDF Container */
-    .viewer-content {
+    /* PDF Scroll Viewport */
+    .viewer-viewport {
       flex: 1;
       width: 100%;
       height: 100%;
-      position: relative;
-      background: #1e293b;
+      overflow-y: auto;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+      padding: 0.75rem 0.5rem 3rem 0.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
     }
 
-    .pdf-embed {
+    /* Loading Spinner Overlay */
+    .viewer-loading {
+      position: absolute;
+      inset: 56px 0 0 0;
+      background: #090d16;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      z-index: 50;
+      transition: opacity 0.3s ease;
+    }
+
+    .loading-spinner {
+      width: 38px;
+      height: 38px;
+      border: 3.5px solid rgba(56, 189, 248, 0.2);
+      border-top-color: #38bdf8;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+
+    .loading-text {
+      font-size: 0.88rem;
+      color: #94a3b8;
+      font-weight: 600;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Individual Page Card Container */
+    .pdf-page-card {
+      width: 100%;
+      max-width: 880px;
+      background: #1e293b;
+      border-radius: 10px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s ease;
+    }
+
+    /* HTML5 Canvas for Each Page */
+    .pdf-canvas {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    /* Page Number Badge on Each Page */
+    .page-badge {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      background: rgba(15, 23, 42, 0.8);
+      color: #e2e8f0;
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      pointer-events: none;
+    }
+
+    /* Page Skeleton Placeholder while rendering */
+    .page-skeleton {
       width: 100%;
       height: 100%;
-      border: none;
-      display: block;
+      min-height: 250px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #1e293b;
+      color: #64748b;
+      font-size: 0.75rem;
     }
 
-    /* Fallback Bar for mobile browsers */
-    .viewer-footer-hint {
-      background: #090d16;
-      color: #94a3b8;
-      font-size: 0.72rem;
+    /* Bottom Quick Action Bar */
+    .bottom-bar {
+      padding: 1rem 0.5rem;
       text-align: center;
-      padding: 0.4rem 0.75rem;
-      flex-shrink: 0;
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      width: 100%;
+      max-width: 880px;
     }
-    .viewer-footer-hint a {
+
+    .bottom-bar-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: #1e293b;
       color: #38bdf8;
-      text-decoration: underline;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 0.6rem 1.1rem;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+
+    .bottom-bar-link:active {
+      background: #0284c7;
+      color: #ffffff;
     }
   </style>
 </head>
 <body>
 
-  <!-- Top Bar with Back Button -->
+  <!-- Sticky Top Header -->
   <header class="viewer-navbar">
-    <a href="javascript:void(0)" onclick="goBack()" class="btn-back" title="Go back to ALUTECH">
-      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.6" viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+    <button type="button" onclick="goBack()" class="btn-nav-back" aria-label="Go back to ALUTECH">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.6" viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
       <span>Back</span>
-    </a>
+    </button>
 
-    <h1 class="viewer-title" id="catalogueTitle">ALUTECH Catalogue</h1>
+    <div class="viewer-title-wrap">
+      <h1 class="viewer-title" id="catalogueTitle">ALUTECH Catalogue</h1>
+      <span class="viewer-page-count" id="pageCountLabel">Loading pages...</span>
+    </div>
 
-    <a href="#" id="downloadBtn" download class="btn-dl" title="Download this Catalogue">
-      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-      <span>PDF</span>
-    </a>
+    <div class="viewer-nav-actions">
+      <a href="#" id="rawFullBtn" target="_blank" class="btn-nav-full" title="Open in raw browser view">
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+        <span>Full View</span>
+      </a>
+
+      <a href="#" id="downloadBtn" download class="btn-nav-dl" title="Download this PDF Catalogue">
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+        <span>PDF</span>
+      </a>
+    </div>
   </header>
 
-  <!-- PDF Display Area -->
-  <main class="viewer-content">
-    <iframe id="pdfFrame" class="pdf-embed" src="" title="Catalogue Viewer"></iframe>
+  <!-- Loading State Overlay -->
+  <div class="viewer-loading" id="loadingOverlay">
+    <div class="loading-spinner"></div>
+    <div class="loading-text" id="loadingText">Opening Catalogue...</div>
+  </div>
+
+  <!-- Vertical Scroll Container for All Pages -->
+  <main class="viewer-viewport" id="pagesContainer">
+    <!-- Pages rendered dynamically by PDF.js -->
   </main>
 
-  <footer class="viewer-footer-hint">
-    Use pinch gestures to zoom. Having trouble? <a href="#" id="directPdfLink" target="_blank">Tap here for raw full view</a>.
-  </footer>
-
   <script>
-    // Parse URL query params: ?file=...&title=...
+    // Set up PDF.js worker
+    if (window.pdfjsLib) {
+      pdfjsLib.GlobalWorkerOptions.workerSrc = 'pdfjs/pdf.worker.min.js';
+    }
+
+    // Parse URL params
     const urlParams = new URLSearchParams(window.location.search);
     const fileParam = urlParams.get('file');
     const titleParam = urlParams.get('title') || 'ALUTECH Catalogue';
 
     const catalogueTitle = document.getElementById('catalogueTitle');
     const pageTitle = document.getElementById('pageTitle');
+    const pageCountLabel = document.getElementById('pageCountLabel');
     const downloadBtn = document.getElementById('downloadBtn');
-    const pdfFrame = document.getElementById('pdfFrame');
-    const directPdfLink = document.getElementById('directPdfLink');
+    const rawFullBtn = document.getElementById('rawFullBtn');
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    const pagesContainer = document.getElementById('pagesContainer');
 
     if (titleParam) {
       catalogueTitle.textContent = titleParam;
@@ -175,10 +338,12 @@
 
     if (fileParam) {
       const cleanUrl = encodeURI(fileParam);
-      pdfFrame.src = cleanUrl + '#toolbar=1&navpanes=0';
       downloadBtn.href = cleanUrl;
       downloadBtn.setAttribute('download', fileParam.split('/').pop());
-      directPdfLink.href = cleanUrl;
+      rawFullBtn.href = cleanUrl;
+      renderPdfDocument(cleanUrl);
+    } else {
+      loadingOverlay.innerHTML = '<div style="color:#ef4444;font-weight:700;">No catalogue file specified.</div>';
     }
 
     function goBack() {
@@ -186,6 +351,122 @@
         window.history.back();
       } else {
         window.location.href = 'index.html#products';
+      }
+    }
+
+    // Progressive rendering with PDF.js
+    async function renderPdfDocument(pdfUrl) {
+      try {
+        const loadingTask = pdfjsLib.getDocument(pdfUrl);
+        const pdf = await loadingTask.promise;
+        const totalPages = pdf.numPages;
+
+        pageCountLabel.textContent = totalPages + ' Pages';
+
+        // Calculate available width for fit-to-width
+        const getTargetWidth = () => {
+          return Math.min(window.innerWidth - 16, 880);
+        };
+
+        const targetWidth = getTargetWidth();
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+        // Pre-create placeholder cards for all pages to establish scroll height
+        const pageCards = [];
+        for (let pageNum = 1; pageNum <= totalPages; pageNum++) {
+          const card = document.createElement('div');
+          card.className = 'pdf-page-card';
+          card.id = 'page-card-' + pageNum;
+          card.dataset.pageNum = pageNum;
+          card.dataset.rendered = 'false';
+
+          const skeleton = document.createElement('div');
+          skeleton.className = 'page-skeleton';
+          skeleton.textContent = 'Loading page ' + pageNum + '...';
+          card.appendChild(skeleton);
+
+          pagesContainer.appendChild(card);
+          pageCards.push(card);
+        }
+
+        // Add bottom full-view link
+        const bottomBar = document.createElement('div');
+        bottomBar.className = 'bottom-bar';
+        bottomBar.innerHTML = '<a href=\"' + pdfUrl + '\" target=\"_blank\" class=\"bottom-bar-link\"><svg width=\"15\" height=\"15\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" viewBox=\"0 0 24 24\"><path d=\"M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6\"></path><polyline points=\"15 3 21 3 21 9\"></polyline><line x1=\"10\" y1=\"14\" x2=\"21\" y2=\"3\"></line></svg> Prefer native full view? Tap to open raw</a>';
+        pagesContainer.appendChild(bottomBar);
+
+        // Function to render a specific page into its card
+        async function renderPage(pageNum) {
+          const card = document.getElementById('page-card-' + pageNum);
+          if (!card || card.dataset.rendered === 'true') return;
+          card.dataset.rendered = 'true';
+
+          try {
+            const page = await pdf.getPage(pageNum);
+            const initialViewport = page.getViewport({ scale: 1 });
+
+            // Fit-to-width scale calculation: perfectly scales down landscape double spreads & portrait pages
+            const fitScale = targetWidth / initialViewport.width;
+            const scaledViewport = page.getViewport({ scale: fitScale * dpr });
+
+            const canvas = document.createElement('canvas');
+            canvas.className = 'pdf-canvas';
+            canvas.width = scaledViewport.width;
+            canvas.height = scaledViewport.height;
+            canvas.style.width = (scaledViewport.width / dpr) + 'px';
+            canvas.style.height = (scaledViewport.height / dpr) + 'px';
+
+            const ctx = canvas.getContext('2d');
+            await page.render({
+              canvasContext: ctx,
+              viewport: scaledViewport
+            }).promise;
+
+            // Clear skeleton and insert canvas
+            card.innerHTML = '';
+            card.appendChild(canvas);
+
+            // Add page badge
+            const badge = document.createElement('div');
+            badge.className = 'page-badge';
+            badge.textContent = pageNum + ' / ' + totalPages;
+            card.appendChild(badge);
+
+            // Hide loading overlay once page 1 renders
+            if (pageNum === 1 && loadingOverlay) {
+              loadingOverlay.style.opacity = '0';
+              setTimeout(() => { loadingOverlay.style.display = 'none'; }, 300);
+            }
+          } catch (pageErr) {
+            console.error('Error rendering page ' + pageNum, pageErr);
+          }
+        }
+
+        // Render first 2 pages immediately
+        await renderPage(1);
+        if (totalPages >= 2) {
+          renderPage(2);
+        }
+
+        // Lazy-render remaining pages as they scroll into view
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const pNum = parseInt(entry.target.dataset.pageNum, 10);
+              renderPage(pNum);
+            }
+          });
+        }, {
+          root: pagesContainer,
+          rootMargin: '300px'
+        });
+
+        pageCards.forEach(card => observer.observe(card));
+
+      } catch (err) {
+        console.error('Failed to load PDF document', err);
+        // Fallback: If PDF.js fails for any reason, direct to raw view
+        loadingOverlay.innerHTML = '<div style=\"text-align:center;padding:1.5rem;\"><p style=\"color:#f87171;font-weight:700;margin-bottom:0.75rem;\">Could not render in-page viewer.</p><a href=\"' + pdfUrl + '\" class=\"btn-nav-full\" style=\"font-size:0.9rem;padding:0.6rem 1.2rem;\">Tap to open in Raw Full View</a></div>';
       }
     }
   </script>
