@@ -1,0 +1,1901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <title>Santosh Maurya | Area Sales Manager &bull; ALUTECH</title>
+  
+  <!-- Google Fonts: Plus Jakarta Sans & Inter Display -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-alice: #F0F8FF;
+      --card-bg: #ffffff;
+      --primary: #0062cc;
+      --primary-dark: #004fb0;
+      --primary-light: #e0edff;
+      --wa-green: #25D366;
+      --wa-green-dark: #1ea952;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --border: #dbeafe;
+      --border-subtle: rgba(203, 213, 225, 0.7);
+      --radius-sm: 10px;
+      --radius-md: 14px;
+      --radius-lg: 18px;
+      --radius-xl: 24px;
+      --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.05);
+      --shadow-card: 0 10px 28px -6px rgba(15, 23, 42, 0.08), 0 2px 8px rgba(15, 23, 42, 0.03);
+      --shadow-float: 0 12px 36px -4px rgba(0, 98, 204, 0.18), 0 4px 12px rgba(15, 23, 42, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--bg-alice);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      letter-spacing: -0.01em;
+      padding-bottom: 90px; /* Space for mobile floating dock */
+    }
+
+    @media (min-width: 860px) {
+      body {
+        padding-bottom: 0;
+      }
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      letter-spacing: -0.03em;
+      font-weight: 800;
+    }
+
+    /* ========================================================
+       TOP APP NAVBAR (Compact, single-row on all mobile screens)
+       ======================================================== */
+    .navbar {
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(203, 213, 225, 0.75);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 14px rgba(15, 23, 42, 0.04);
+      height: 60px;
+      display: flex;
+      align-items: center;
+      padding: 0 1.25rem;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    .nav-brand-link {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .nav-logo {
+      height: 38px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-shrink: 0;
+    }
+
+    .nav-btn-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: #ffffff;
+      color: var(--text-main);
+      border: 1px solid var(--border);
+      padding: 0.45rem 0.85rem;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav-btn-pill:hover, .nav-btn-pill:active {
+      background: var(--primary-light);
+      border-color: #93c5fd;
+      color: var(--primary);
+    }
+
+    .nav-btn-circle {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: transform 0.15s ease, background 0.15s ease;
+      flex-shrink: 0;
+    }
+
+    .nav-btn-call {
+      background: var(--primary-light);
+      color: var(--primary);
+      border: 1px solid #bfdbfe;
+    }
+
+    .nav-btn-call:hover, .nav-btn-call:active {
+      background: var(--primary);
+      color: #ffffff;
+      transform: scale(1.05);
+    }
+
+    .nav-btn-wa {
+      background: var(--wa-green);
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(37, 211, 102, 0.35);
+    }
+
+    .nav-btn-wa:hover, .nav-btn-wa:active {
+      background: var(--wa-green-dark);
+      transform: scale(1.05);
+    }
+
+    .desktop-only-text {
+      display: none;
+    }
+
+    @media (min-width: 640px) {
+      .desktop-only-text {
+        display: inline;
+      }
+      .nav-btn-call {
+        width: auto;
+        border-radius: 999px;
+        padding: 0.45rem 0.85rem;
+        gap: 0.4rem;
+      }
+      .nav-btn-wa {
+        width: auto;
+        border-radius: 999px;
+        padding: 0.45rem 0.95rem;
+        gap: 0.4rem;
+      }
+    }
+
+    /* ========================================================
+       HERO / PROFILE CONTAINER
+       ======================================================== */
+    .hero-section {
+      background-color: var(--bg-alice);
+      padding: 1.5rem 1rem 2.5rem 1rem;
+      flex: 1;
+    }
+
+    .hero-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+    }
+
+    @media (min-width: 900px) {
+      .hero-section {
+        padding: 3rem 1.5rem;
+      }
+      .hero-container {
+        display: grid;
+        grid-template-columns: 1fr 1.25fr;
+        gap: 3.5rem;
+        align-items: center;
+      }
+      .cards-column {
+        order: 2 !important;
+      }
+      .profile-info {
+        order: 1 !important;
+      }
+    }
+
+    /* On mobile, Cards come FIRST as requested */
+    .cards-column {
+      order: 1;
+      width: 100%;
+    }
+
+    .profile-info {
+      order: 2;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    /* ========================================================
+       MOBILE CARDS SHOWCASE & SEGMENTED SWITCHER
+       ======================================================== */
+    .mobile-card-switcher {
+      display: flex;
+      background: #e2e8f0;
+      padding: 4px;
+      border-radius: 999px;
+      margin: 0 auto 1.25rem auto;
+      max-width: 340px;
+      width: 100%;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+
+    .card-switch-tab {
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem;
+      padding: 0.48rem 0.5rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      white-space: nowrap;
+      user-select: none;
+    }
+
+    .card-switch-tab.active {
+      background: #ffffff;
+      color: var(--primary);
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.12);
+    }
+
+    @media (min-width: 900px) {
+      .mobile-card-switcher {
+        display: none !important;
+      }
+    }
+
+    .cards-split-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.25rem;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 900px) {
+      .cards-split-wrapper {
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.45fr) !important;
+        gap: 1.5rem;
+        max-width: 660px;
+      }
+    }
+
+    /* Cards frames */
+    .card-frame {
+      background: #ffffff;
+      border-radius: 20px;
+      border: 1.5px solid rgba(203, 213, 225, 0.95);
+      box-shadow: var(--shadow-card);
+      position: relative;
+      cursor: pointer;
+      overflow: hidden;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      width: 100%;
+    }
+
+    .card-frame:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-float);
+      border-color: #93c5fd;
+    }
+
+    .id-card-frame {
+      max-width: 265px;
+      padding: 10px 10px 12px 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #ffffff;
+    }
+
+    .card-holder-slot {
+      width: 44px;
+      height: 7px;
+      background: #e2e8f0;
+      border-radius: 999px;
+      border: 1px solid #cbd5e1;
+      margin-bottom: 8px;
+      box-shadow: inset 0 1.5px 3px rgba(0, 0, 0, 0.16);
+      flex-shrink: 0;
+    }
+
+    .id-card-inner {
+      border-radius: 12px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .visiting-card-frame {
+      max-width: 355px;
+      padding: 8px;
+      background: #ffffff;
+    }
+
+    .visiting-card-inner {
+      border-radius: 12px;
+      border: 1px solid rgba(0, 0, 0, 0.07);
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ========================================================
+       PROFILE & CREDENTIALS (Mobile First Structure)
+       ======================================================== */
+    .profile-header-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem 1.35rem;
+      box-shadow: var(--shadow-card);
+      position: relative;
+    }
+
+    .verified-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: #eff6ff;
+      color: var(--primary);
+      border: 1px solid #bfdbfe;
+      padding: 0.3rem 0.65rem;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      margin-bottom: 0.6rem;
+    }
+
+    .name-heading {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1.1;
+      color: var(--text-main);
+      margin-bottom: 0.25rem;
+    }
+
+    .role-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .role-company {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-top: 0.2rem;
+    }
+
+    /* 4-Tile Primary Mobile Quick Action Hub */
+    .mobile-quick-actions {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.6rem;
+      margin-top: 0.85rem;
+    }
+
+    .m-action-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem;
+      padding: 0.75rem 0.35rem;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.75rem;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+      border: none;
+    }
+
+    .m-action-btn:active {
+      transform: scale(0.96);
+    }
+
+    .m-btn-call {
+      background: linear-gradient(135deg, #0062cc, #0284c7);
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(0, 98, 204, 0.25);
+    }
+
+    .m-btn-wa {
+      background: linear-gradient(135deg, #25D366, #1fad53);
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.28);
+    }
+
+    .m-btn-email {
+      background: #ffffff;
+      color: var(--text-main);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .m-btn-email:hover {
+      background: #f8fafc;
+      border-color: #93c5fd;
+    }
+
+    .m-btn-vcf {
+      background: #ffffff;
+      color: var(--primary);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      font-family: inherit;
+    }
+
+    .m-btn-vcf:hover {
+      background: var(--primary-light);
+      border-color: #93c5fd;
+    }
+
+    /* Structured Details Card Groups */
+    .details-group-card {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+
+    .details-group-header {
+      background: #f8fafc;
+      padding: 0.65rem 1rem;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .details-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .detail-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid rgba(226, 232, 240, 0.7);
+      transition: background 0.15s ease;
+    }
+
+    .detail-row:last-child {
+      border-bottom: none;
+    }
+
+    .detail-row:hover {
+      background: #f8fbff;
+    }
+
+    .detail-main-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .detail-icon-badge {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .badge-phone {
+      background: #eff6ff;
+      color: #0062cc;
+      border: 1px solid #bfdbfe;
+    }
+
+    .badge-emergency {
+      background: #eff6ff;
+      color: #0062cc;
+      border: 1px solid #bfdbfe;
+    }
+
+    .badge-email {
+      background: #eff6ff;
+      color: #0062cc;
+      border: 1px solid #bfdbfe;
+    }
+
+    .badge-wa {
+      background: #dcfce7;
+      color: #16a34a;
+      border: 1px solid #bbf7d0;
+    }
+
+    .badge-corp {
+      background: #f1f5f9;
+      color: #475569;
+      border: 1px solid #e2e8f0;
+    }
+
+    .detail-label-val {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+      min-width: 0;
+    }
+
+    .detail-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      letter-spacing: 0.3px;
+    }
+
+    .detail-val {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-main);
+      text-decoration: none;
+      word-break: break-word;
+    }
+
+    .detail-val a {
+      color: var(--text-main);
+      text-decoration: none;
+    }
+
+    .detail-val a:hover {
+      color: var(--primary);
+    }
+
+    .detail-action-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.42rem 0.8rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-decoration: none;
+      flex-shrink: 0;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .pill-blue {
+      background: #eff6ff;
+      color: #0062cc;
+      border: 1px solid #bfdbfe;
+    }
+
+    .pill-blue:hover, .pill-blue:active {
+      background: #0062cc;
+      color: #ffffff;
+      border-color: #0062cc;
+    }
+
+    .pill-green {
+      background: #dcfce7;
+      color: #16a34a;
+      border: 1px solid #bbf7d0;
+    }
+
+    .pill-green:hover, .pill-green:active {
+      background: #25D366;
+      color: #ffffff;
+      border-color: #25D366;
+    }
+
+    /* ========================================================
+       OUR PRODUCTS SECTION (Mobile First Catalog Grid)
+       ======================================================== */
+    .products-section {
+      background-color: var(--bg-alice);
+      padding: 2.5rem 1rem 4rem 1rem;
+      border-top: 1px solid rgba(219, 234, 254, 0.9);
+    }
+
+    .products-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .products-header-block {
+      margin-bottom: 1.5rem;
+      text-align: left;
+    }
+
+    .products-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--primary);
+      margin-bottom: 0.3rem;
+    }
+
+    .products-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .products-title {
+      font-size: clamp(1.8rem, 4vw, 2.3rem);
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .products-count-badge {
+      background: #ffffff;
+      color: var(--primary);
+      border: 1px solid var(--border);
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* Mobile Category Filter Chips */
+    .filter-chips-container {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      padding: 0.25rem 0 0.85rem 0;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .filter-chips-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    .filter-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.45rem 0.9rem;
+      border-radius: 999px;
+      background: #ffffff;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .filter-chip.active {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+      box-shadow: 0 4px 12px rgba(0, 98, 204, 0.25);
+    }
+
+    /* Products Grid */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+
+    @media (max-width: 640px) {
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .product-card {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-card);
+      border-color: #93c5fd;
+    }
+
+    .product-thumb-wrap {
+      position: relative;
+      height: 240px;
+      background: #f8fafc;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem;
+      border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+      cursor: pointer;
+    }
+
+    .product-thumb {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+      display: block;
+      border-radius: 6px;
+    }
+
+    .product-card:hover .product-thumb {
+      transform: scale(1.03);
+    }
+
+    .thumb-hover-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      border-radius: 6px;
+    }
+
+    .product-card:hover .thumb-hover-overlay {
+      opacity: 1;
+    }
+
+    .view-pill {
+      background: #ffffff;
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.82rem;
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .product-info {
+      padding: 1.1rem 1.15rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      background: #ffffff;
+      margin-top: auto;
+    }
+
+    .product-name-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    .product-name {
+      font-size: 1.02rem;
+      font-weight: 800;
+      color: var(--text-main);
+      line-height: 1.25;
+    }
+
+    .product-cat-tag {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      background: var(--bg-alice);
+      color: var(--primary);
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      letter-spacing: 0.4px;
+      flex-shrink: 0;
+    }
+
+    /* Dual Action Row on Mobile Cards */
+    .product-card-actions {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 0.5rem;
+    }
+
+    .btn-card-view {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      background: var(--primary);
+      color: #ffffff;
+      border: none;
+      padding: 0.62rem 0.85rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.84rem;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.15s ease;
+      min-height: 42px;
+    }
+
+    .btn-card-view:hover, .btn-card-view:active {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn-card-dl {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem;
+      background: #ffffff;
+      color: var(--text-main);
+      border: 1px solid var(--border);
+      padding: 0.62rem 0.75rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.84rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.15s ease;
+      min-height: 42px;
+    }
+
+    .btn-card-dl:hover, .btn-card-dl:active {
+      background: #f1f5f9;
+      color: var(--primary);
+      border-color: #93c5fd;
+    }
+
+    /* ========================================================
+       IN-SITE PDF VIEWER MODAL (Edge-to-edge on mobile, no blur)
+       ======================================================== */
+    .pdf-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.75);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.25s ease, visibility 0.25s ease;
+    }
+
+    .pdf-modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .pdf-modal-container {
+      background: #0f172a;
+      border-radius: 18px;
+      width: 100%;
+      max-width: 1180px;
+      height: 94vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1);
+      overflow: hidden;
+      transform: scale(0.97);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .pdf-modal-overlay.active .pdf-modal-container {
+      transform: scale(1);
+    }
+
+    .pdf-modal-header {
+      background: #1e293b;
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      color: #ffffff;
+      flex-shrink: 0;
+    }
+
+    .pdf-modal-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      min-width: 0;
+    }
+
+    .pdf-modal-title {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: #ffffff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .pdf-modal-badge {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      background: rgba(0, 98, 204, 0.3);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 0.18rem 0.5rem;
+      border-radius: 5px;
+      letter-spacing: 0.5px;
+      display: none;
+    }
+
+    @media (min-width: 640px) {
+      .pdf-modal-badge {
+        display: inline-block;
+      }
+    }
+
+    .pdf-modal-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      flex-shrink: 0;
+    }
+
+    .pdf-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.45rem 0.75rem;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.15s ease;
+      cursor: pointer;
+      border: none;
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .pdf-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Razor-sharp Red Close Button */
+    .pdf-btn-close {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.45rem 0.85rem;
+      border-radius: 8px;
+      background: #dc2626;
+      color: #ffffff;
+      font-size: 0.82rem;
+      font-weight: 700;
+      font-family: inherit;
+      border: none;
+      cursor: pointer;
+      transition: background 0.15s ease, transform 0.15s ease;
+      white-space: nowrap;
+      box-shadow: none;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .pdf-btn-close:hover {
+      background: #b91c1c;
+      transform: translateY(-1px);
+    }
+
+    .pdf-modal-body {
+      flex: 1;
+      background: #1e293b;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .pdf-loading-state {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      color: #94a3b8;
+      font-size: 0.9rem;
+      font-weight: 600;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .pdf-spinner {
+      width: 34px;
+      height: 34px;
+      border: 3px solid rgba(255, 255, 255, 0.12);
+      border-top-color: #38bdf8;
+      border-radius: 50%;
+      animation: pdf-spin 0.8s linear infinite;
+    }
+
+    @keyframes pdf-spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .pdf-iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+      background: #ffffff;
+      position: relative;
+      z-index: 2;
+    }
+
+    .pdf-mobile-hint {
+      background: #1e293b;
+      padding: 0.55rem 1rem;
+      text-align: center;
+      font-size: 0.78rem;
+      color: #94a3b8;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      flex-shrink: 0;
+    }
+
+    /* ========================================================
+       PERSISTENT FLOATING BOTTOM MOBILE DOCK
+       ======================================================== */
+    .mobile-floating-dock {
+      position: fixed;
+      bottom: max(14px, env(safe-area-inset-bottom));
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 24px);
+      max-width: 440px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(203, 213, 225, 0.85);
+      border-radius: 999px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.15), 0 2px 8px rgba(0, 0, 0, 0.05);
+      padding: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      gap: 6px;
+      z-index: 95;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    @media (min-width: 860px) {
+      .mobile-floating-dock {
+        display: none !important;
+      }
+    }
+
+    .dock-btn {
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem;
+      padding: 0.55rem 0.4rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.15s ease;
+      cursor: pointer;
+      border: none;
+      white-space: nowrap;
+      min-height: 40px;
+    }
+
+    .dock-btn-call {
+      background: #eff6ff;
+      color: var(--primary);
+    }
+
+    .dock-btn-call:active {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    .dock-btn-wa {
+      background: var(--wa-green);
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(37, 211, 102, 0.3);
+    }
+
+    .dock-btn-wa:active {
+      background: var(--wa-green-dark);
+    }
+
+    .dock-btn-save {
+      background: #f1f5f9;
+      color: var(--text-main);
+      font-family: inherit;
+    }
+
+    .dock-btn-save:active {
+      background: #e2e8f0;
+      color: var(--primary);
+    }
+
+    /* Footer */
+    footer {
+      background: rgba(240, 248, 255, 0.95);
+      border-top: 1px solid rgba(219, 234, 254, 0.8);
+      padding: 1.5rem 1rem;
+      text-align: center;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    footer p {
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Sticky Navbar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="#" class="nav-brand-link" aria-label="ALUTECH Home">
+        <img src="logo.png" alt="ALUTECH" class="nav-logo">
+      </a>
+
+      <div class="nav-actions">
+        <a href="#products" class="nav-btn-pill">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+          <span>Catalogues</span>
+        </a>
+
+        <a href="tel:+918448499830" class="nav-btn-circle nav-btn-call" title="Call Santosh Maurya">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          <span class="desktop-only-text">+91 8448499830</span>
+        </a>
+
+        <a href="https://wa.me/918448499830?text=Hello%20Santosh%20Maurya" target="_blank" class="nav-btn-circle nav-btn-wa" title="WhatsApp Santosh Maurya">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+          <span class="desktop-only-text">WhatsApp</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <main class="hero-section">
+    <div class="hero-container">
+      
+      <!-- 1. Cards Showcase (Comes FIRST on mobile) -->
+      <div class="cards-column">
+        
+        <!-- Mobile Segmented Tab Switcher -->
+        <div class="mobile-card-switcher" id="mobileCardSwitcher">
+          <button type="button" class="card-switch-tab active" id="tabBoth" onclick="setCardView('both')">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+            Both Cards
+          </button>
+          <button type="button" class="card-switch-tab" id="tabId" onclick="setCardView('id')">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"></rect><circle cx="9" cy="10" r="2"></circle><line x1="15" y1="8" x2="17" y2="8"></line><line x1="15" y1="12" x2="17" y2="12"></line><line x1="7" y1="16" x2="17" y2="16"></line></svg>
+            ID Badge
+          </button>
+          <button type="button" class="card-switch-tab" id="tabVisiting" onclick="setCardView('visiting')">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
+            Visiting Card
+          </button>
+        </div>
+
+        <div class="cards-split-wrapper" id="cardsWrapper">
+          <!-- 1. ID Card with Badge Holder Slot Frame -->
+          <div class="card-frame id-card-frame" id="idCardBox">
+            <div class="card-holder-slot"></div>
+            <img src="ID-Card.png" alt="Santosh Maurya ID Card" class="id-card-inner">
+          </div>
+
+          <!-- 2. Visiting Card Frame -->
+          <div class="card-frame visiting-card-frame" id="visitingCardBox">
+            <img src="visitingCard.png" alt="Santosh Maurya Visiting Card" class="visiting-card-inner">
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 2. Profile & Structured Corporate Info -->
+      <div class="profile-info">
+        
+        <!-- Header Card with Verified Badge -->
+        <div class="profile-header-card">
+          <div class="verified-pill">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="#0062cc"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            Official ALUTECH Representative
+          </div>
+          <h1 class="name-heading">Santosh Maurya</h1>
+          <div class="role-title">Area Sales Manager</div>
+          <div class="role-company">ALUTECH &bull; Elegance Redefined</div>
+
+          <!-- 4-Tile Primary Mobile Quick Action Hub -->
+          <div class="mobile-quick-actions">
+            <a href="tel:+918448499830" class="m-action-btn m-btn-call">
+              <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              <span>Call</span>
+            </a>
+
+            <a href="https://wa.me/918448499830?text=Hello%20Santosh%20Maurya" target="_blank" class="m-action-btn m-btn-wa">
+              <svg width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+              <span>WhatsApp</span>
+            </a>
+
+            <a href="mailto:Skm110086@gmail.com" class="m-action-btn m-btn-email">
+              <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              <span>Email</span>
+            </a>
+
+            <button type="button" onclick="downloadVCard()" class="m-action-btn m-btn-vcf">
+              <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              <span>Save</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Group 1: Direct Contact Information -->
+        <div class="details-group-card">
+          <div class="details-group-header">
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            Direct Contact Details
+          </div>
+          <div class="details-list">
+            
+            <!-- Phone -->
+            <div class="detail-row">
+              <div class="detail-main-wrap">
+                <div class="detail-icon-badge badge-phone">
+                  <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                </div>
+                <div class="detail-label-val">
+                  <span class="detail-label">Phone</span>
+                  <a href="tel:+919953157405" class="detail-val">+91 9953157405</a>
+                </div>
+              </div>
+              <a href="tel:+919953157405" class="detail-action-pill pill-blue" title="Call Phone">
+                <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                Call
+              </a>
+            </div>
+
+            <!-- Emergency -->
+            <div class="detail-row">
+              <div class="detail-main-wrap">
+                <div class="detail-icon-badge badge-emergency">
+                  <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                </div>
+                <div class="detail-label-val">
+                  <span class="detail-label">Emergency</span>
+                  <a href="tel:+918448499830" class="detail-val">+91 8448499830</a>
+                </div>
+              </div>
+              <a href="tel:+918448499830" class="detail-action-pill pill-blue" title="Call Emergency">
+                <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                Call
+              </a>
+            </div>
+
+            <!-- Email -->
+            <div class="detail-row">
+              <div class="detail-main-wrap">
+                <div class="detail-icon-badge badge-email">
+                  <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                </div>
+                <div class="detail-label-val">
+                  <span class="detail-label">Email</span>
+                  <a href="mailto:Skm110086@gmail.com" class="detail-val">Skm110086@gmail.com</a>
+                </div>
+              </div>
+              <a href="mailto:Skm110086@gmail.com" class="detail-action-pill pill-blue" title="Send Email">
+                <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                Email
+              </a>
+            </div>
+
+            <!-- WhatsApp -->
+            <div class="detail-row">
+              <div class="detail-main-wrap">
+                <div class="detail-icon-badge badge-wa">
+                  <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                </div>
+                <div class="detail-label-val">
+                  <span class="detail-label">WhatsApp</span>
+                  <a href="https://wa.me/918448499830?text=Hello%20Santosh%20Maurya" target="_blank" class="detail-val">+91 8448499830</a>
+                </div>
+              </div>
+              <a href="https://wa.me/918448499830?text=Hello%20Santosh%20Maurya" target="_blank" class="detail-action-pill pill-green" title="Chat on WhatsApp">
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                WhatsApp
+              </a>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Group 2: Corporate & Office Credentials -->
+        <div class="details-group-card">
+          <div class="details-group-header">
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            Corporate Credentials & Location
+          </div>
+          <div class="details-list">
+            
+            <!-- Employee Code -->
+            <div class="detail-row">
+              <div class="detail-main-wrap">
+                <div class="detail-icon-badge badge-corp">
+                  <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"></rect><circle cx="9" cy="10" r="2"></circle><line x1="15" y1="8" x2="17" y2="8"></line><line x1="15" y1="12" x2="17" y2="12"></line><line x1="7" y1="16" x2="17" y2="16"></line></svg>
+                </div>
+                <div class="detail-label-val">
+                  <span class="detail-label">Employee Code</span>
+                  <span class="detail-val">ALU104 &bull; Area Sales Manager</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Location -->
+            <div class="detail-row">
+              <div class="detail-main-wrap">
+                <div class="detail-icon-badge badge-corp">
+                  <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                </div>
+                <div class="detail-label-val">
+                  <span class="detail-label">Location</span>
+                  <span class="detail-val">Delhi, India</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Office Address -->
+            <div class="detail-row">
+              <div class="detail-main-wrap">
+                <div class="detail-icon-badge badge-corp">
+                  <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                </div>
+                <div class="detail-label-val">
+                  <span class="detail-label">Office Address</span>
+                  <span class="detail-val">Shivaji Park, New Delhi - 110026</span>
+                </div>
+              </div>
+              <a href="https://maps.google.com/?q=Shivaji+Park,+New+Delhi+110026" target="_blank" class="detail-action-pill pill-blue" title="Open Map">
+                <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                Map
+              </a>
+            </div>
+
+            <!-- Website -->
+            <div class="detail-row">
+              <div class="detail-main-wrap">
+                <div class="detail-icon-badge badge-corp">
+                  <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                </div>
+                <div class="detail-label-val">
+                  <span class="detail-label">Website</span>
+                  <a href="https://www.alutechpanels.com" target="_blank" class="detail-val">www.alutechpanels.com</a>
+                </div>
+              </div>
+              <a href="https://www.alutechpanels.com" target="_blank" class="detail-action-pill pill-blue" title="Visit Website">
+                <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                Visit
+              </a>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Products Section -->
+  <section class="products-section" id="products">
+    <div class="products-container">
+      
+      <div class="products-header-block">
+        <div class="products-eyebrow">ALUTECH Catalogues</div>
+        <div class="products-title-row">
+          <h2 class="products-title">Our Products</h2>
+          <span class="products-count-badge">7 Official Catalogues</span>
+        </div>
+      </div>
+
+      <!-- Mobile Category Filter Chips -->
+      <div class="filter-chips-container">
+        <button type="button" class="filter-chip active" onclick="filterCatalogues('all', this)">
+          All (7)
+        </button>
+        <button type="button" class="filter-chip" onclick="filterCatalogues('louvers', this)">
+          Louvers (4)
+        </button>
+        <button type="button" class="filter-chip" onclick="filterCatalogues('panels', this)">
+          Panels & ACP (3)
+        </button>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="products-grid">
+        
+        <!-- 1. Acp: ACP SHEET CATLOG -->
+        <div class="product-card" data-category="panels">
+          <div class="product-thumb-wrap" onclick="openPdfViewer('ACP SHEET CATLOG.pdf', 'ACP SHEET CATLOG')">
+            <img src="ACP SHEET CATLOG.png" alt="ACP SHEET CATLOG" class="product-thumb">
+            <div class="thumb-hover-overlay">
+              <span class="view-pill">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                View Catalogue
+              </span>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-name-row">
+              <h3 class="product-name">ACP SHEET CATLOG</h3>
+              <span class="product-cat-tag">ACP Sheet</span>
+            </div>
+            <div class="product-card-actions">
+              <button type="button" class="btn-card-view" onclick="openPdfViewer('ACP SHEET CATLOG.pdf', 'ACP SHEET CATLOG')">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                View
+              </button>
+              <a href="ACP SHEET CATLOG.pdf" download="ACP SHEET CATLOG.pdf" class="btn-card-dl" title="Download ACP SHEET CATLOG PDF">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                PDF
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. UPCVC: UPCVC LOUVERS -->
+        <div class="product-card" data-category="louvers">
+          <div class="product-thumb-wrap" onclick="openPdfViewer('UPCVC LOUVERS.pdf', 'UPCVC LOUVERS')">
+            <img src="UPCVC LOUVERS.png" alt="UPCVC LOUVERS" class="product-thumb">
+            <div class="thumb-hover-overlay">
+              <span class="view-pill">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                View Catalogue
+              </span>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-name-row">
+              <h3 class="product-name">UPCVC LOUVERS</h3>
+              <span class="product-cat-tag">Louvers</span>
+            </div>
+            <div class="product-card-actions">
+              <button type="button" class="btn-card-view" onclick="openPdfViewer('UPCVC LOUVERS.pdf', 'UPCVC LOUVERS')">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                View
+              </button>
+              <a href="UPCVC LOUVERS.pdf" download="UPCVC LOUVERS.pdf" class="btn-card-dl" title="Download UPCVC LOUVERS PDF">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                PDF
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. upvc: UPVC LOUVERS -->
+        <div class="product-card" data-category="louvers">
+          <div class="product-thumb-wrap" onclick="openPdfViewer('UPVC LOUVERS.pdf', 'UPVC LOUVERS')">
+            <img src="UPVC LOUVERS.png" alt="UPVC LOUVERS" class="product-thumb">
+            <div class="thumb-hover-overlay">
+              <span class="view-pill">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                View Catalogue
+              </span>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-name-row">
+              <h3 class="product-name">UPVC LOUVERS</h3>
+              <span class="product-cat-tag">Louvers</span>
+            </div>
+            <div class="product-card-actions">
+              <button type="button" class="btn-card-view" onclick="openPdfViewer('UPVC LOUVERS.pdf', 'UPVC LOUVERS')">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                View
+              </button>
+              <a href="UPVC LOUVERS.pdf" download="UPVC LOUVERS.pdf" class="btn-card-dl" title="Download UPVC LOUVERS PDF">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                PDF
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. wpc: WPC LOUVERS -->
+        <div class="product-card" data-category="louvers">
+          <div class="product-thumb-wrap" onclick="openPdfViewer('WPC LOUVERS.pdf', 'WPC LOUVERS')">
+            <img src="WPC LOUVERS.png" alt="WPC LOUVERS" class="product-thumb">
+            <div class="thumb-hover-overlay">
+              <span class="view-pill">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                View Catalogue
+              </span>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-name-row">
+              <h3 class="product-name">WPC LOUVERS</h3>
+              <span class="product-cat-tag">Louvers</span>
+            </div>
+            <div class="product-card-actions">
+              <button type="button" class="btn-card-view" onclick="openPdfViewer('WPC LOUVERS.pdf', 'WPC LOUVERS')">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                View
+              </button>
+              <a href="WPC LOUVERS.pdf" download="WPC LOUVERS.pdf" class="btn-card-dl" title="Download WPC LOUVERS PDF">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                PDF
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. soffit: SOFFIT PANELS -->
+        <div class="product-card" data-category="panels">
+          <div class="product-thumb-wrap" onclick="openPdfViewer('SOFFIT PANELS.pdf', 'SOFFIT PANELS')">
+            <img src="SOFFIT PANELS.png" alt="SOFFIT PANELS" class="product-thumb">
+            <div class="thumb-hover-overlay">
+              <span class="view-pill">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                View Catalogue
+              </span>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-name-row">
+              <h3 class="product-name">SOFFIT PANELS</h3>
+              <span class="product-cat-tag">Panels</span>
+            </div>
+            <div class="product-card-actions">
+              <button type="button" class="btn-card-view" onclick="openPdfViewer('SOFFIT PANELS.pdf', 'SOFFIT PANELS')">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                View
+              </button>
+              <a href="SOFFIT PANELS.pdf" download="SOFFIT PANELS.pdf" class="btn-card-dl" title="Download SOFFIT PANELS PDF">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                PDF
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. 5 nm: 5 mm HPL -->
+        <div class="product-card" data-category="panels">
+          <div class="product-thumb-wrap" onclick="openPdfViewer('5 mm HPL.pdf', '5 mm HPL')">
+            <img src="5 mm HPL.png" alt="5 mm HPL" class="product-thumb">
+            <div class="thumb-hover-overlay">
+              <span class="view-pill">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                View Catalogue
+              </span>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-name-row">
+              <h3 class="product-name">5 mm HPL</h3>
+              <span class="product-cat-tag">HPL Clads</span>
+            </div>
+            <div class="product-card-actions">
+              <button type="button" class="btn-card-view" onclick="openPdfViewer('5 mm HPL.pdf', '5 mm HPL')">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                View
+              </button>
+              <a href="5 mm HPL.pdf" download="5 mm HPL.pdf" class="btn-card-dl" title="Download 5 mm HPL PDF">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                PDF
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. 18 nm: 18 nm WPC LOUVER -->
+        <div class="product-card" data-category="louvers">
+          <div class="product-thumb-wrap" onclick="openPdfViewer('18 nm WPC LOUVER.pdf', '18 nm WPC LOUVER')">
+            <img src="18 nm WPC LOUVER.png" alt="18 nm WPC LOUVER" class="product-thumb">
+            <div class="thumb-hover-overlay">
+              <span class="view-pill">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                View Catalogue
+              </span>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-name-row">
+              <h3 class="product-name">18 nm WPC LOUVER</h3>
+              <span class="product-cat-tag">Louvers</span>
+            </div>
+            <div class="product-card-actions">
+              <button type="button" class="btn-card-view" onclick="openPdfViewer('18 nm WPC LOUVER.pdf', '18 nm WPC LOUVER')">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                View
+              </button>
+              <a href="18 nm WPC LOUVER.pdf" download="18 nm WPC LOUVER.pdf" class="btn-card-dl" title="Download 18 nm WPC LOUVER PDF">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                PDF
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- In-Site PDF Viewer Modal (Unblurred background, razor-sharp red close button) -->
+  <div class="pdf-modal-overlay" id="pdfModal" onclick="handlePdfOverlayClick(event)" role="dialog" aria-modal="true" aria-labelledby="pdfModalTitle">
+    <div class="pdf-modal-container" onclick="event.stopPropagation()">
+      <div class="pdf-modal-header">
+        <div class="pdf-modal-title-wrap">
+          <svg width="18" height="18" fill="none" stroke="#38bdf8" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          <h3 class="pdf-modal-title" id="pdfModalTitle">ALUTECH Catalogue</h3>
+          <span class="pdf-modal-badge">Catalogue</span>
+        </div>
+        <div class="pdf-modal-actions">
+          <a href="#" id="pdfDownloadBtn" download class="pdf-btn" title="Download Catalogue PDF">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            <span>Download</span>
+          </a>
+          <a href="#" id="pdfNewTabBtn" target="_blank" rel="noopener noreferrer" class="pdf-btn" title="Open in Full Tab">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            <span>Full Tab</span>
+          </a>
+          <button type="button" class="pdf-btn-close" onclick="closePdfViewer()" aria-label="Close Viewer" title="Close Catalogue (Esc)">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.6" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            <span>Close</span>
+          </button>
+        </div>
+      </div>
+      <div class="pdf-modal-body">
+        <div class="pdf-loading-state" id="pdfLoader">
+          <div class="pdf-spinner"></div>
+          <span>Loading Catalogue...</span>
+        </div>
+        <iframe id="pdfIframe" class="pdf-iframe" src="" title="ALUTECH Catalogue Viewer" onload="hidePdfLoader()"></iframe>
+      </div>
+      <div class="pdf-mobile-hint">
+        Viewing on mobile? Tap <strong>Full Tab</strong> or <strong>Download</strong> for smooth multi-page reading.
+      </div>
+    </div>
+  </div>
+
+  <!-- Persistent Floating Mobile Dock (Always accessible for thumbs) -->
+  <div class="mobile-floating-dock" id="mobileDock">
+    <a href="tel:+918448499830" class="dock-btn dock-btn-call" title="Call Santosh Maurya">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+      <span>Call</span>
+    </a>
+
+    <a href="https://wa.me/918448499830?text=Hello%20Santosh%20Maurya" target="_blank" class="dock-btn dock-btn-wa" title="WhatsApp Chat">
+      <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+      <span>WhatsApp</span>
+    </a>
+
+    <button type="button" onclick="downloadVCard()" class="dock-btn dock-btn-save" title="Save Contact to Phone">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+      <span>Save Contact</span>
+    </button>
+  </div>
+
+  <!-- Minimal Footer -->
+  <footer>
+    <p>Santosh Maurya &bull; Area Sales Manager &bull; ALUTECH</p>
+    <p style="margin-top: 4px; font-size: 0.76rem; color: #94a3b8;">Delhi, India &bull; Phone: +91 9953157405 &bull; Emergency: +91 8448499830</p>
+  </footer>
+
+  <script>
+    // Mobile Card Segmented Switcher Logic
+    const idCardBox = document.getElementById('idCardBox');
+    const visitingCardBox = document.getElementById('visitingCardBox');
+    const tabBoth = document.getElementById('tabBoth');
+    const tabId = document.getElementById('tabId');
+    const tabVisiting = document.getElementById('tabVisiting');
+
+    function setCardView(view) {
+      if (window.innerWidth >= 900) return; // Desktop uses dual grid layout
+      
+      [tabBoth, tabId, tabVisiting].forEach(tab => {
+        if (tab) tab.classList.remove('active');
+      });
+
+      if (view === 'both') {
+        if (idCardBox) idCardBox.style.display = 'flex';
+        if (visitingCardBox) visitingCardBox.style.display = 'block';
+        if (tabBoth) tabBoth.classList.add('active');
+      } else if (view === 'id') {
+        if (idCardBox) idCardBox.style.display = 'flex';
+        if (visitingCardBox) visitingCardBox.style.display = 'none';
+        if (tabId) tabId.classList.add('active');
+      } else if (view === 'visiting') {
+        if (idCardBox) idCardBox.style.display = 'none';
+        if (visitingCardBox) visitingCardBox.style.display = 'block';
+        if (tabVisiting) tabVisiting.classList.add('active');
+      }
+    }
+
+    // Auto reset display on resize between mobile and desktop
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 900) {
+        if (idCardBox) idCardBox.style.display = 'flex';
+        if (visitingCardBox) visitingCardBox.style.display = 'block';
+      }
+    });
+
+    // Catalogue Filter Logic
+    function filterCatalogues(category, btn) {
+      const chips = document.querySelectorAll('.filter-chip');
+      chips.forEach(chip => chip.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+
+      const cards = document.querySelectorAll('.product-card');
+      cards.forEach(card => {
+        const cat = card.getAttribute('data-category');
+        if (category === 'all' || cat === category) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // PDF Viewer Modal Logic
+    const pdfModal = document.getElementById('pdfModal');
+    const pdfIframe = document.getElementById('pdfIframe');
+    const pdfModalTitle = document.getElementById('pdfModalTitle');
+    const pdfDownloadBtn = document.getElementById('pdfDownloadBtn');
+    const pdfNewTabBtn = document.getElementById('pdfNewTabBtn');
+    const pdfLoader = document.getElementById('pdfLoader');
+    const mobileDock = document.getElementById('mobileDock');
+
+    function hidePdfLoader() {
+      if (pdfLoader && pdfIframe && pdfIframe.src && !pdfIframe.src.endsWith('about:blank')) {
+        pdfLoader.style.display = 'none';
+      }
+    }
+
+    function openPdfViewer(pdfUrl, title) {
+      if (!pdfModal || !pdfIframe) return;
+      pdfModalTitle.textContent = title;
+      const encodedUrl = encodeURI(pdfUrl);
+      if (pdfLoader) pdfLoader.style.display = 'flex';
+      pdfIframe.src = encodedUrl + '#toolbar=1&navpanes=0';
+      pdfDownloadBtn.href = encodedUrl;
+      pdfDownloadBtn.setAttribute('download', pdfUrl);
+      pdfNewTabBtn.href = encodedUrl;
+      pdfModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      if (mobileDock) mobileDock.style.display = 'none';
+    }
+
+    function closePdfViewer() {
+      if (!pdfModal || !pdfIframe) return;
+      pdfModal.classList.remove('active');
+      // Free browser memory immediately
+      pdfIframe.src = 'about:blank';
+      if (pdfLoader) pdfLoader.style.display = 'none';
+      document.body.style.overflow = '';
+      if (mobileDock && window.innerWidth < 860) mobileDock.style.display = 'flex';
+    }
+
+    function handlePdfOverlayClick(e) {
+      if (e.target === pdfModal) {
+        closePdfViewer();
+      }
+    }
+
+    // Keyboard navigation: Escape key closes viewer
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && pdfModal && pdfModal.classList.contains('active')) {
+        closePdfViewer();
+      }
+    });
+
+    // vCard generator & download
+    function downloadVCard() {
+      const vcardData = [
+        "BEGIN:VCARD",
+        "VERSION:3.0",
+        "N:Maurya;Santosh;;;",
+        "FN:Santosh Maurya",
+        "ORG:ALUTECH Panels & Clads",
+        "TITLE:Area Sales Manager",
+        "TEL;TYPE=CELL,VOICE:+919953157405",
+        "TEL;TYPE=WORK,VOICE:+918448499830",
+        "EMAIL;TYPE=WORK,INTERNET:Skm110086@gmail.com",
+        "ADR;TYPE=WORK:;;Shivaji Park;New Delhi;;110026;India",
+        "URL:https://www.alutechpanels.com",
+        "NOTE:Employee ID: ALU104",
+        "END:VCARD"
+      ].join("\r\n");
+
+      const blob = new Blob([vcardData], { type: "text/vcard;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", "Santosh_Maurya.vcf");
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    }
+  </script>
+</body>
+</html>
