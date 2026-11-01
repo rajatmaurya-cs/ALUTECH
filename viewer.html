@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <!-- Local PDF.js (Offline-capable & ultra fast) -->
+  <!-- Local PDF.js -->
   <script src="pdfjs/pdf.min.js"></script>
   <style>
     * {
@@ -77,6 +77,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      padding: 0 0.25rem;
     }
 
     .viewer-title {
@@ -145,19 +146,16 @@
       transform: scale(0.97);
     }
 
-    /* PDF Scroll Viewport */
+    /* PDF Viewport - BLOCK FLOW to prevent flexbox crushing */
     .viewer-viewport {
       flex: 1;
       width: 100%;
       height: 100%;
-      overflow-y: auto;
+      overflow-y: scroll;
       overflow-x: hidden;
       -webkit-overflow-scrolling: touch;
       padding: 0.75rem 0.5rem 3rem 0.5rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
+      display: block; /* Standard block layout: items stack naturally and never shrink */
     }
 
     /* Loading Spinner Overlay */
@@ -195,62 +193,60 @@
 
     /* Individual Page Card Container */
     .pdf-page-card {
+      display: block;
       width: 100%;
-      max-width: 880px;
+      max-width: 860px;
+      margin: 0 auto 16px auto;
       background: #1e293b;
       border-radius: 10px;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.08);
       overflow: hidden;
       position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      transition: transform 0.2s ease;
     }
 
     /* HTML5 Canvas for Each Page */
     .pdf-canvas {
       display: block;
-      width: 100%;
-      height: auto;
+      width: 100% !important;
+      height: auto !important;
     }
 
-    /* Page Number Badge on Each Page */
-    .page-badge {
-      position: absolute;
-      bottom: 8px;
-      right: 8px;
-      background: rgba(15, 23, 42, 0.8);
-      color: #e2e8f0;
-      font-size: 0.68rem;
-      font-weight: 700;
-      padding: 0.2rem 0.55rem;
-      border-radius: 999px;
-      backdrop-filter: blur(4px);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      pointer-events: none;
-    }
-
-    /* Page Skeleton Placeholder while rendering */
+    /* Page Skeleton Placeholder with natural height */
     .page-skeleton {
       width: 100%;
       height: 100%;
-      min-height: 250px;
       display: flex;
       align-items: center;
       justify-content: center;
       background: #1e293b;
       color: #64748b;
-      font-size: 0.75rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    /* Page Number Badge */
+    .page-badge {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background: rgba(15, 23, 42, 0.85);
+      color: #f1f5f9;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      pointer-events: none;
     }
 
     /* Bottom Quick Action Bar */
     .bottom-bar {
-      padding: 1rem 0.5rem;
+      padding: 1.5rem 0.5rem 2rem 0.5rem;
       text-align: center;
       width: 100%;
-      max-width: 880px;
+      max-width: 860px;
+      margin: 0 auto;
     }
 
     .bottom-bar-link {
@@ -259,10 +255,10 @@
       gap: 0.4rem;
       background: #1e293b;
       color: #38bdf8;
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      padding: 0.6rem 1.1rem;
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      padding: 0.65rem 1.2rem;
       border-radius: 999px;
-      font-size: 0.82rem;
+      font-size: 0.84rem;
       font-weight: 700;
       text-decoration: none;
       transition: all 0.15s ease;
@@ -285,11 +281,11 @@
 
     <div class="viewer-title-wrap">
       <h1 class="viewer-title" id="catalogueTitle">ALUTECH Catalogue</h1>
-      <span class="viewer-page-count" id="pageCountLabel">Loading pages...</span>
+      <span class="viewer-page-count" id="pageCountLabel">Loading...</span>
     </div>
 
     <div class="viewer-nav-actions">
-      <a href="#" id="rawFullBtn" target="_blank" class="btn-nav-full" title="Open in raw browser view">
+      <a href="#" id="rawFullBtn" class="btn-nav-full" title="Open in raw browser view">
         <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
         <span>Full View</span>
       </a>
@@ -307,18 +303,16 @@
     <div class="loading-text" id="loadingText">Opening Catalogue...</div>
   </div>
 
-  <!-- Vertical Scroll Container for All Pages -->
+  <!-- Vertical Scroll Container (Block Flow) -->
   <main class="viewer-viewport" id="pagesContainer">
-    <!-- Pages rendered dynamically by PDF.js -->
+    <!-- Dynamic Page Cards appended here -->
   </main>
 
   <script>
-    // Set up PDF.js worker
     if (window.pdfjsLib) {
       pdfjsLib.GlobalWorkerOptions.workerSrc = 'pdfjs/pdf.worker.min.js';
     }
 
-    // Parse URL params
     const urlParams = new URLSearchParams(window.location.search);
     const fileParam = urlParams.get('file');
     const titleParam = urlParams.get('title') || 'ALUTECH Catalogue';
@@ -341,7 +335,7 @@
       downloadBtn.href = cleanUrl;
       downloadBtn.setAttribute('download', fileParam.split('/').pop());
       rawFullBtn.href = cleanUrl;
-      renderPdfDocument(cleanUrl);
+      renderCatalogue(cleanUrl);
     } else {
       loadingOverlay.innerHTML = '<div style="color:#ef4444;font-weight:700;">No catalogue file specified.</div>';
     }
@@ -354,8 +348,7 @@
       }
     }
 
-    // Progressive rendering with PDF.js
-    async function renderPdfDocument(pdfUrl) {
+    async function renderCatalogue(pdfUrl) {
       try {
         const loadingTask = pdfjsLib.getDocument(pdfUrl);
         const pdf = await loadingTask.promise;
@@ -363,110 +356,115 @@
 
         pageCountLabel.textContent = totalPages + ' Pages';
 
-        // Calculate available width for fit-to-width
-        const getTargetWidth = () => {
-          return Math.min(window.innerWidth - 16, 880);
-        };
+        // Load Page 1 first to determine aspect ratio & viewport width
+        const firstPage = await pdf.getPage(1);
+        const unscaledViewport = firstPage.getViewport({ scale: 1 });
+        const aspectRatio = unscaledViewport.height / unscaledViewport.width;
 
-        const targetWidth = getTargetWidth();
+        const targetWidth = Math.min(window.innerWidth - 16, 860);
+        const estimatedCardHeight = Math.round(targetWidth * aspectRatio);
         const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
-        // Pre-create placeholder cards for all pages to establish scroll height
+        // Create placeholder cards with EXACT estimated height so they establish true scroll height
         const pageCards = [];
-        for (let pageNum = 1; pageNum <= totalPages; pageNum++) {
+        for (let i = 1; i <= totalPages; i++) {
           const card = document.createElement('div');
           card.className = 'pdf-page-card';
-          card.id = 'page-card-' + pageNum;
-          card.dataset.pageNum = pageNum;
+          card.id = 'page-card-' + i;
+          card.dataset.pageNum = i;
           card.dataset.rendered = 'false';
+          card.style.height = estimatedCardHeight + 'px';
 
           const skeleton = document.createElement('div');
           skeleton.className = 'page-skeleton';
-          skeleton.textContent = 'Loading page ' + pageNum + '...';
+          skeleton.textContent = 'Page ' + i + ' of ' + totalPages;
           card.appendChild(skeleton);
 
           pagesContainer.appendChild(card);
           pageCards.push(card);
         }
 
-        // Add bottom full-view link
+        // Bottom link for direct native view
         const bottomBar = document.createElement('div');
         bottomBar.className = 'bottom-bar';
-        bottomBar.innerHTML = '<a href=\"' + pdfUrl + '\" target=\"_blank\" class=\"bottom-bar-link\"><svg width=\"15\" height=\"15\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" viewBox=\"0 0 24 24\"><path d=\"M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6\"></path><polyline points=\"15 3 21 3 21 9\"></polyline><line x1=\"10\" y1=\"14\" x2=\"21\" y2=\"3\"></line></svg> Prefer native full view? Tap to open raw</a>';
+        bottomBar.innerHTML = '<a href="' + pdfUrl + '" class="bottom-bar-link"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg> Prefer native full view? Tap to open raw</a>';
         pagesContainer.appendChild(bottomBar);
 
-        // Function to render a specific page into its card
-        async function renderPage(pageNum) {
+        // Sequential rendering queue to avoid parallel WebKit canvas resource spikes
+        let renderQueue = Promise.resolve();
+
+        function queueRenderPage(pageNum) {
           const card = document.getElementById('page-card-' + pageNum);
-          if (!card || card.dataset.rendered === 'true') return;
-          card.dataset.rendered = 'true';
+          if (!card || card.dataset.rendered !== 'false') return;
+          card.dataset.rendered = 'pending';
 
-          try {
-            const page = await pdf.getPage(pageNum);
-            const initialViewport = page.getViewport({ scale: 1 });
+          renderQueue = renderQueue.then(async () => {
+            try {
+              const page = (pageNum === 1) ? firstPage : await pdf.getPage(pageNum);
+              const pViewport = page.getViewport({ scale: 1 });
 
-            // Fit-to-width scale calculation: perfectly scales down landscape double spreads & portrait pages
-            const fitScale = targetWidth / initialViewport.width;
-            const scaledViewport = page.getViewport({ scale: fitScale * dpr });
+              // Dynamic scale calculation for exact fit-to-width
+              const fitScale = targetWidth / pViewport.width;
+              const scaledViewport = page.getViewport({ scale: fitScale * dpr });
 
-            const canvas = document.createElement('canvas');
-            canvas.className = 'pdf-canvas';
-            canvas.width = scaledViewport.width;
-            canvas.height = scaledViewport.height;
-            canvas.style.width = (scaledViewport.width / dpr) + 'px';
-            canvas.style.height = (scaledViewport.height / dpr) + 'px';
+              const canvas = document.createElement('canvas');
+              canvas.className = 'pdf-canvas';
+              canvas.width = scaledViewport.width;
+              canvas.height = scaledViewport.height;
 
-            const ctx = canvas.getContext('2d');
-            await page.render({
-              canvasContext: ctx,
-              viewport: scaledViewport
-            }).promise;
+              const ctx = canvas.getContext('2d');
+              await page.render({
+                canvasContext: ctx,
+                viewport: scaledViewport
+              }).promise;
 
-            // Clear skeleton and insert canvas
-            card.innerHTML = '';
-            card.appendChild(canvas);
+              // Insert canvas into card and clear fixed height
+              card.innerHTML = '';
+              card.appendChild(canvas);
+              card.style.height = 'auto'; // Release fixed height to let canvas fit perfectly
+              card.dataset.rendered = 'done';
 
-            // Add page badge
-            const badge = document.createElement('div');
-            badge.className = 'page-badge';
-            badge.textContent = pageNum + ' / ' + totalPages;
-            card.appendChild(badge);
+              // Add page badge
+              const badge = document.createElement('div');
+              badge.className = 'page-badge';
+              badge.textContent = pageNum + ' / ' + totalPages;
+              card.appendChild(badge);
 
-            // Hide loading overlay once page 1 renders
-            if (pageNum === 1 && loadingOverlay) {
-              loadingOverlay.style.opacity = '0';
-              setTimeout(() => { loadingOverlay.style.display = 'none'; }, 300);
+              if (pageNum === 1 && loadingOverlay) {
+                loadingOverlay.style.opacity = '0';
+                setTimeout(() => { loadingOverlay.style.display = 'none'; }, 250);
+              }
+            } catch (renderErr) {
+              console.error('Error rendering page ' + pageNum, renderErr);
+              card.dataset.rendered = 'error';
             }
-          } catch (pageErr) {
-            console.error('Error rendering page ' + pageNum, pageErr);
-          }
+          });
         }
 
-        // Render first 2 pages immediately
-        await renderPage(1);
+        // Render Page 1 immediately
+        queueRenderPage(1);
         if (totalPages >= 2) {
-          renderPage(2);
+          queueRenderPage(2);
         }
 
-        // Lazy-render remaining pages as they scroll into view
+        // Lazy-render remaining pages as user scrolls toward them
         const observer = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
               const pNum = parseInt(entry.target.dataset.pageNum, 10);
-              renderPage(pNum);
+              queueRenderPage(pNum);
             }
           });
         }, {
           root: pagesContainer,
-          rootMargin: '300px'
+          rootMargin: '400px'
         });
 
         pageCards.forEach(card => observer.observe(card));
 
       } catch (err) {
         console.error('Failed to load PDF document', err);
-        // Fallback: If PDF.js fails for any reason, direct to raw view
-        loadingOverlay.innerHTML = '<div style=\"text-align:center;padding:1.5rem;\"><p style=\"color:#f87171;font-weight:700;margin-bottom:0.75rem;\">Could not render in-page viewer.</p><a href=\"' + pdfUrl + '\" class=\"btn-nav-full\" style=\"font-size:0.9rem;padding:0.6rem 1.2rem;\">Tap to open in Raw Full View</a></div>';
+        loadingOverlay.innerHTML = '<div style="text-align:center;padding:1.5rem;"><p style="color:#f87171;font-weight:700;margin-bottom:0.75rem;">Could not load in-page viewer.</p><a href="' + pdfUrl + '" class="btn-nav-full" style="font-size:0.9rem;padding:0.6rem 1.2rem;">Tap to open in Raw Full View</a></div>';
       }
     }
   </script>
