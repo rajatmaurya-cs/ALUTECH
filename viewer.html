@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <!-- Local PDF.js -->
+  <!-- Local PDF.js Engine -->
   <script src="pdfjs/pdf.min.js"></script>
   <style>
     * {
@@ -68,7 +68,7 @@
       transform: scale(0.97);
     }
 
-    /* Center Title and Page Count */
+    /* Center Title and Status */
     .viewer-title-wrap {
       flex: 1;
       min-width: 0;
@@ -90,10 +90,26 @@
       max-width: 100%;
     }
 
-    .viewer-page-count {
+    .viewer-status {
       font-size: 0.68rem;
-      color: #94a3b8;
+      color: #38bdf8;
       font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #38bdf8;
+      animation: pulse 1s infinite alternate;
+    }
+
+    @keyframes pulse {
+      from { opacity: 0.3; }
+      to { opacity: 1; }
     }
 
     /* Right Action Group */
@@ -155,40 +171,7 @@
       overflow-x: hidden;
       -webkit-overflow-scrolling: touch;
       padding: 0.75rem 0.5rem 3rem 0.5rem;
-      display: block; /* Standard block layout: items stack naturally and never shrink */
-    }
-
-    /* Loading Spinner Overlay */
-    .viewer-loading {
-      position: absolute;
-      inset: 56px 0 0 0;
-      background: #090d16;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-      z-index: 50;
-      transition: opacity 0.3s ease;
-    }
-
-    .loading-spinner {
-      width: 38px;
-      height: 38px;
-      border: 3.5px solid rgba(56, 189, 248, 0.2);
-      border-top-color: #38bdf8;
-      border-radius: 50%;
-      animation: spin 0.7s linear infinite;
-    }
-
-    .loading-text {
-      font-size: 0.88rem;
-      color: #94a3b8;
-      font-weight: 600;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
+      display: block;
     }
 
     /* Individual Page Card Container */
@@ -204,14 +187,15 @@
       position: relative;
     }
 
-    /* HTML5 Canvas for Each Page */
+    /* HTML5 Canvas / Image preview for each page */
     .pdf-canvas {
       display: block;
       width: 100% !important;
       height: auto !important;
+      object-fit: contain;
     }
 
-    /* Page Skeleton Placeholder with natural height */
+    /* Page Skeleton Placeholder */
     .page-skeleton {
       width: 100%;
       height: 100%;
@@ -281,7 +265,10 @@
 
     <div class="viewer-title-wrap">
       <h1 class="viewer-title" id="catalogueTitle">ALUTECH Catalogue</h1>
-      <span class="viewer-page-count" id="pageCountLabel">Loading...</span>
+      <span class="viewer-status" id="viewerStatus">
+        <span class="status-dot"></span>
+        <span id="statusText">Opening...</span>
+      </span>
     </div>
 
     <div class="viewer-nav-actions">
@@ -297,15 +284,13 @@
     </div>
   </header>
 
-  <!-- Loading State Overlay -->
-  <div class="viewer-loading" id="loadingOverlay">
-    <div class="loading-spinner"></div>
-    <div class="loading-text" id="loadingText">Opening Catalogue...</div>
-  </div>
-
-  <!-- Vertical Scroll Container (Block Flow) -->
+  <!-- Vertical Scroll Container -->
   <main class="viewer-viewport" id="pagesContainer">
-    <!-- Dynamic Page Cards appended here -->
+    <!-- Initial instant cover page preview if provided -->
+    <div class="pdf-page-card" id="page-card-1" style="display: none;">
+      <img id="instantCoverImg" class="pdf-canvas" alt="Catalogue Cover" src="" style="display: none;">
+      <div class="page-badge" id="coverBadge">Page 1</div>
+    </div>
   </main>
 
   <script>
@@ -316,18 +301,29 @@
     const urlParams = new URLSearchParams(window.location.search);
     const fileParam = urlParams.get('file');
     const titleParam = urlParams.get('title') || 'ALUTECH Catalogue';
+    const thumbParam = urlParams.get('thumb');
 
     const catalogueTitle = document.getElementById('catalogueTitle');
     const pageTitle = document.getElementById('pageTitle');
-    const pageCountLabel = document.getElementById('pageCountLabel');
+    const viewerStatus = document.getElementById('viewerStatus');
+    const statusText = document.getElementById('statusText');
     const downloadBtn = document.getElementById('downloadBtn');
     const rawFullBtn = document.getElementById('rawFullBtn');
-    const loadingOverlay = document.getElementById('loadingOverlay');
     const pagesContainer = document.getElementById('pagesContainer');
+    const pageCard1 = document.getElementById('page-card-1');
+    const instantCoverImg = document.getElementById('instantCoverImg');
 
     if (titleParam) {
       catalogueTitle.textContent = titleParam;
       pageTitle.textContent = titleParam + ' - ALUTECH';
+    }
+
+    // Instant Zero-Second Cover Rendering: Display cached thumbnail immediately
+    if (thumbParam) {
+      instantCoverImg.src = decodeURIComponent(thumbParam);
+      instantCoverImg.style.display = 'block';
+      pageCard1.style.display = 'block';
+      statusText.textContent = 'Rendering pages...';
     }
 
     if (fileParam) {
@@ -337,7 +333,7 @@
       rawFullBtn.href = cleanUrl;
       renderCatalogue(cleanUrl);
     } else {
-      loadingOverlay.innerHTML = '<div style="color:#ef4444;font-weight:700;">No catalogue file specified.</div>';
+      statusText.textContent = 'File missing';
     }
 
     function goBack() {
@@ -350,13 +346,20 @@
 
     async function renderCatalogue(pdfUrl) {
       try {
-        const loadingTask = pdfjsLib.getDocument(pdfUrl);
+        // High-performance stream loading
+        const loadingTask = pdfjsLib.getDocument({
+          url: pdfUrl,
+          rangeChunkSize: 65536 * 4
+        });
+
         const pdf = await loadingTask.promise;
         const totalPages = pdf.numPages;
 
-        pageCountLabel.textContent = totalPages + ' Pages';
+        statusText.textContent = totalPages + ' Pages';
+        const dot = viewerStatus.querySelector('.status-dot');
+        if (dot) dot.style.display = 'none';
 
-        // Load Page 1 first to determine aspect ratio & viewport width
+        // Load Page 1 dimensions
         const firstPage = await pdf.getPage(1);
         const unscaledViewport = firstPage.getViewport({ scale: 1 });
         const aspectRatio = unscaledViewport.height / unscaledViewport.width;
@@ -365,13 +368,18 @@
         const estimatedCardHeight = Math.round(targetWidth * aspectRatio);
         const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
-        // Create placeholder cards with EXACT estimated height so they establish true scroll height
-        const pageCards = [];
-        for (let i = 1; i <= totalPages; i++) {
+        // Pre-create placeholder cards with exact dimensions
+        pageCard1.style.display = 'block';
+        pageCard1.dataset.pageNum = '1';
+        pageCard1.dataset.rendered = 'false';
+
+        const pageCards = [pageCard1];
+
+        for (let i = 2; i <= totalPages; i++) {
           const card = document.createElement('div');
           card.className = 'pdf-page-card';
           card.id = 'page-card-' + i;
-          card.dataset.pageNum = i;
+          card.dataset.pageNum = String(i);
           card.dataset.rendered = 'false';
           card.style.height = estimatedCardHeight + 'px';
 
@@ -387,10 +395,10 @@
         // Bottom link for direct native view
         const bottomBar = document.createElement('div');
         bottomBar.className = 'bottom-bar';
-        bottomBar.innerHTML = '<a href="' + pdfUrl + '" class="bottom-bar-link"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg> Prefer native full view? Tap to open raw</a>';
+        bottomBar.innerHTML = '<a href="' + pdfUrl + '" class="bottom-bar-link"><svg width=\"15\" height=\"15\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" viewBox=\"0 0 24 24\"><path d=\"M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6\"></path><polyline points=\"15 3 21 3 21 9\"></polyline><line x1=\"10\" y1=\"14\" x2=\"21\" y2=\"3\"></line></svg> Prefer native full view? Tap to open raw</a>';
         pagesContainer.appendChild(bottomBar);
 
-        // Sequential rendering queue to avoid parallel WebKit canvas resource spikes
+        // Sequential rendering queue
         let renderQueue = Promise.resolve();
 
         function queueRenderPage(pageNum) {
@@ -403,7 +411,6 @@
               const page = (pageNum === 1) ? firstPage : await pdf.getPage(pageNum);
               const pViewport = page.getViewport({ scale: 1 });
 
-              // Dynamic scale calculation for exact fit-to-width
               const fitScale = targetWidth / pViewport.width;
               const scaledViewport = page.getViewport({ scale: fitScale * dpr });
 
@@ -418,10 +425,10 @@
                 viewport: scaledViewport
               }).promise;
 
-              // Insert canvas into card and clear fixed height
+              // Insert canvas into card
               card.innerHTML = '';
               card.appendChild(canvas);
-              card.style.height = 'auto'; // Release fixed height to let canvas fit perfectly
+              card.style.height = 'auto';
               card.dataset.rendered = 'done';
 
               // Add page badge
@@ -429,11 +436,6 @@
               badge.className = 'page-badge';
               badge.textContent = pageNum + ' / ' + totalPages;
               card.appendChild(badge);
-
-              if (pageNum === 1 && loadingOverlay) {
-                loadingOverlay.style.opacity = '0';
-                setTimeout(() => { loadingOverlay.style.display = 'none'; }, 250);
-              }
             } catch (renderErr) {
               console.error('Error rendering page ' + pageNum, renderErr);
               card.dataset.rendered = 'error';
@@ -441,13 +443,13 @@
           });
         }
 
-        // Render Page 1 immediately
+        // Render Page 1 and Page 2 right away
         queueRenderPage(1);
         if (totalPages >= 2) {
           queueRenderPage(2);
         }
 
-        // Lazy-render remaining pages as user scrolls toward them
+        // Lazy-render remaining pages as user scrolls
         const observer = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -464,7 +466,7 @@
 
       } catch (err) {
         console.error('Failed to load PDF document', err);
-        loadingOverlay.innerHTML = '<div style="text-align:center;padding:1.5rem;"><p style="color:#f87171;font-weight:700;margin-bottom:0.75rem;">Could not load in-page viewer.</p><a href="' + pdfUrl + '" class="btn-nav-full" style="font-size:0.9rem;padding:0.6rem 1.2rem;">Tap to open in Raw Full View</a></div>';
+        statusText.textContent = 'Viewer error';
       }
     }
   </script>
