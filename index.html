@@ -219,9 +219,9 @@
       }
       .hero-container {
         display: grid;
-        grid-template-columns: 1fr 1.25fr;
+        grid-template-columns: 1fr 1.35fr;
         gap: 3.5rem;
-        align-items: flex-start;
+        align-items: stretch;
         max-width: 1220px;
         margin: 0 auto;
       }
@@ -229,9 +229,13 @@
         order: 2 !important;
         display: flex;
         justify-content: flex-start;
+        align-items: stretch;
       }
       .profile-info {
         order: 1 !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
       }
     }
 
@@ -315,20 +319,38 @@
     @media (min-width: 900px) {
       .cards-split-wrapper {
         display: grid !important;
-        grid-template-columns: 265px minmax(0, 1fr) !important;
+        grid-template-columns: minmax(280px, 310px) minmax(320px, 360px) !important;
         gap: 1.5rem;
-        align-items: flex-start !important;
-        max-width: 660px;
+        align-items: stretch !important;
+        max-width: 700px;
         width: 100%;
         margin: 0;
+      }
+
+      .id-card-frame {
+        max-width: 310px !important;
+        height: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+      }
+
+      .id-card-inner {
+        width: 100% !important;
+        height: calc(100% - 20px) !important;
+        object-fit: cover !important;
+        display: block !important;
       }
 
       .visiting-column-wrap {
         display: flex;
         flex-direction: column;
-        gap: 1.15rem;
+        justify-content: space-between;
+        gap: 1.25rem;
         width: 100%;
-        max-width: 355px;
+        max-width: 360px;
+        height: 100%;
       }
 
       .desktop-card-widget {
