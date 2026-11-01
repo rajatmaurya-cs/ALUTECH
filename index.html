@@ -1841,14 +1841,12 @@
     }
 
     function handlePdfClick(e, pdfUrl, title) {
+      const viewerUrl = 'viewer.html?file=' + encodeURIComponent(pdfUrl) + '&title=' + encodeURIComponent(title);
       if (isMobileDevice()) {
-        // Mobile browsers (iOS Safari & Android Chrome) have strict iframe memory caps causing blank screens on large PDFs,
-        // and embedded iframes cannot scale wide landscape spreads (e.g. ACP Sheet) to screen width.
-        // Allowing native browser navigation (<a href="..." target="_blank">) lets the mobile OS use its native PDF reader:
-        // - 100% fit-to-width responsive scaling
-        // - Buttery smooth vertical scrolling & pinch-to-zoom
-        // - Native streaming with zero blank screen memory crashes
-        return true; // Let native <a href="..." target="_blank"> execute
+        // Open dedicated viewer page with prominent [<- Back] button
+        window.location.href = viewerUrl;
+        if (e) e.preventDefault();
+        return false;
       }
       if (e) e.preventDefault();
       openPdfViewer(pdfUrl, title);
@@ -1858,7 +1856,7 @@
     function openPdfViewer(pdfUrl, title) {
       const encodedUrl = encodeURI(pdfUrl);
       if (isMobileDevice()) {
-        window.open(encodedUrl, '_blank');
+        window.location.href = 'viewer.html?file=' + encodeURIComponent(pdfUrl) + '&title=' + encodeURIComponent(title);
         return;
       }
       if (!pdfModal || !pdfIframe) return;
