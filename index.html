@@ -83,7 +83,7 @@
     }
 
     .nav-container {
-      max-width: 1200px;
+      max-width: 1220px;
       width: 100%;
       margin: 0 auto;
       display: flex;
@@ -202,7 +202,7 @@
     }
 
     .hero-container {
-      max-width: 1200px;
+      max-width: 1220px;
       margin: 0 auto;
       width: 100%;
       display: flex;
@@ -212,16 +212,20 @@
 
     @media (min-width: 900px) {
       .hero-section {
-        padding: 3rem 1.5rem;
+        padding: 3rem 1.5rem 3.5rem 1.5rem;
       }
       .hero-container {
         display: grid;
         grid-template-columns: 1fr 1.25fr;
         gap: 3.5rem;
-        align-items: center;
+        align-items: flex-start;
+        max-width: 1220px;
+        margin: 0 auto;
       }
       .cards-column {
         order: 2 !important;
+        display: flex;
+        justify-content: flex-start;
       }
       .profile-info {
         order: 1 !important;
@@ -296,12 +300,164 @@
       margin: 0 auto;
     }
 
+    /* Desktop-only wrapper and widget (Display: contents on mobile so mobile is 100% untouched) */
+    .visiting-column-wrap {
+      display: contents;
+    }
+
+    .desktop-card-widget {
+      display: none !important;
+    }
+
     @media (min-width: 900px) {
       .cards-split-wrapper {
         display: grid !important;
-        grid-template-columns: minmax(0, 1fr) minmax(0, 1.45fr) !important;
+        grid-template-columns: 265px minmax(0, 1fr) !important;
         gap: 1.5rem;
+        align-items: flex-start !important;
         max-width: 660px;
+        width: 100%;
+        margin: 0;
+      }
+
+      .visiting-column-wrap {
+        display: flex;
+        flex-direction: column;
+        gap: 1.15rem;
+        width: 100%;
+        max-width: 355px;
+      }
+
+      .desktop-card-widget {
+        display: flex !important;
+        flex-direction: column;
+        gap: 0.85rem;
+        background: #ffffff;
+        border-radius: 18px;
+        border: 1px solid var(--border);
+        padding: 1.15rem 1.25rem;
+        box-shadow: var(--shadow-card);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .desktop-card-widget:hover {
+        box-shadow: var(--shadow-float);
+        border-color: #93c5fd;
+      }
+
+      .d-widget-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+        padding-bottom: 0.7rem;
+        border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+      }
+
+      .d-widget-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 0.74rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+        color: var(--primary);
+      }
+
+      .d-emp-pill {
+        background: #eff6ff;
+        color: var(--primary);
+        border: 1px solid #bfdbfe;
+        padding: 0.18rem 0.55rem;
+        border-radius: 6px;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.3px;
+      }
+
+      .d-widget-body {
+        display: flex;
+        flex-direction: column;
+        gap: 0.45rem;
+      }
+
+      .d-widget-title {
+        font-size: 0.92rem;
+        font-weight: 800;
+        color: var(--text-main);
+      }
+
+      .d-widget-desc {
+        font-size: 0.8rem;
+        line-height: 1.45;
+        color: var(--text-muted);
+        margin: 0;
+      }
+
+      .d-chips-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+        margin-top: 0.2rem;
+      }
+
+      .d-chip {
+        font-size: 0.7rem;
+        font-weight: 700;
+        background: var(--bg-alice);
+        color: var(--primary);
+        border: 1px solid #bfdbfe;
+        padding: 0.2rem 0.5rem;
+        border-radius: 999px;
+        letter-spacing: 0.2px;
+      }
+
+      .d-widget-actions {
+        display: grid;
+        grid-template-columns: 1.25fr 1fr;
+        gap: 0.5rem;
+        padding-top: 0.35rem;
+      }
+
+      .d-btn-action {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.35rem;
+        padding: 0.52rem 0.75rem;
+        border-radius: var(--radius-sm);
+        font-size: 0.8rem;
+        font-weight: 700;
+        font-family: inherit;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.15s ease;
+        border: none;
+        white-space: nowrap;
+      }
+
+      .d-btn-catalogues {
+        background: var(--primary);
+        color: #ffffff;
+        box-shadow: 0 2px 8px rgba(0, 98, 204, 0.25);
+      }
+
+      .d-btn-catalogues:hover {
+        background: var(--primary-dark);
+        transform: translateY(-1px);
+      }
+
+      .d-btn-vcf {
+        background: #f8fafc;
+        color: var(--text-main);
+        border: 1px solid var(--border);
+      }
+
+      .d-btn-vcf:hover {
+        background: #f1f5f9;
+        border-color: #93c5fd;
+        color: var(--primary);
       }
     }
 
@@ -658,7 +814,7 @@
     }
 
     .products-container {
-      max-width: 1200px;
+      max-width: 1220px;
       margin: 0 auto;
     }
 
@@ -749,6 +905,13 @@
     @media (max-width: 640px) {
       .products-grid {
         grid-template-columns: 1fr;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .products-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem;
       }
     }
 
@@ -1271,9 +1434,43 @@
             <img src="Images/ID-Card.png" alt="Santosh Maurya ID Card" class="id-card-inner">
           </div>
 
-          <!-- 2. Visiting Card Frame -->
-          <div class="card-frame visiting-card-frame" id="visitingCardBox">
-            <img src="Images/visitingCard.png" alt="Santosh Maurya Visiting Card" class="visiting-card-inner">
+          <!-- 2. Visiting Card Frame + Desktop Executive Credential Column -->
+          <div class="visiting-column-wrap">
+            <div class="card-frame visiting-card-frame" id="visitingCardBox">
+              <img src="Images/visitingCard.png" alt="Santosh Maurya Visiting Card" class="visiting-card-inner">
+            </div>
+
+            <!-- Desktop Executive Credentials & Fast Links Widget (Hidden on mobile) -->
+            <div class="desktop-card-widget">
+              <div class="d-widget-header">
+                <div class="d-widget-badge">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="#0062cc"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                  <span>Verified ALUTECH Officer</span>
+                </div>
+                <span class="d-emp-pill">ALU104</span>
+              </div>
+              <div class="d-widget-body">
+                <div class="d-widget-title">Territory Sales &bull; Delhi & North Region</div>
+                <p class="d-widget-desc">Specialized in ACP Panels, Exterior Cladding, HPL Sheets & Architectural Louvers.</p>
+                <div class="d-chips-row">
+                  <span class="d-chip">ACP Sheets</span>
+                  <span class="d-chip">HPL Clads</span>
+                  <span class="d-chip">UPVC Louvers</span>
+                  <span class="d-chip">WPC Louvers</span>
+                  <span class="d-chip">Soffit</span>
+                </div>
+              </div>
+              <div class="d-widget-actions">
+                <a href="#products" class="d-btn-action d-btn-catalogues">
+                  <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                  <span>Catalogues</span>
+                </a>
+                <button type="button" onclick="downloadVCard()" class="d-btn-action d-btn-vcf">
+                  <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                  <span>Save vCard</span>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
 
