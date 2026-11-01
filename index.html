@@ -35,6 +35,10 @@
       --shadow-float: 0 12px 36px -4px rgba(0, 98, 204, 0.18), 0 4px 12px rgba(15, 23, 42, 0.06);
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -838,6 +842,7 @@
       background-color: var(--bg-alice);
       padding: 2.5rem 1rem 4rem 1rem;
       border-top: 1px solid rgba(219, 234, 254, 0.9);
+      scroll-margin-top: 75px;
     }
 
     .products-container {
@@ -1408,7 +1413,7 @@
   <!-- Top Sticky Navbar -->
   <header class="navbar">
     <div class="nav-container">
-      <a href="https://www.alutechindia.com/" target="_blank" rel="noopener noreferrer" class="nav-brand-link" aria-label="ALUTECH Home">
+      <a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;" class="nav-brand-link" aria-label="Scroll to top of page">
         <img src="Images/logo.png" alt="ALUTECH" class="nav-logo">
       </a>
 
