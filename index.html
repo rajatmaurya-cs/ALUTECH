@@ -555,6 +555,35 @@
       display: block;
     }
 
+    /* Floating Badges on Cards */
+    .card-badge-pill {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: #1e293b;
+      color: #ffffff;
+      font-size: 0.65rem;
+      font-weight: 800;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      padding: 0.28rem 0.6rem;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+      z-index: 5;
+      pointer-events: none;
+      line-height: 1;
+    }
+
+    .id-card-frame .card-badge-pill {
+      top: 12px;
+      right: 12px;
+    }
+
+    .visiting-card-frame .card-badge-pill {
+      top: 14px;
+      right: 14px;
+    }
+
     /* ========================================================
        PROFILE & CREDENTIALS (Mobile First Structure)
        ======================================================== */
@@ -1462,6 +1491,7 @@
         <div class="cards-split-wrapper" id="cardsWrapper">
           <!-- 1. ID Card with Badge Holder Slot Frame -->
           <div class="card-frame id-card-frame" id="idCardBox">
+            <span class="card-badge-pill">ID CARD</span>
             <div class="card-holder-slot"></div>
             <img src="Images/ID-Card.png" alt="Santosh Maurya ID Card" class="id-card-inner">
           </div>
@@ -1469,6 +1499,7 @@
           <!-- 2. Visiting Card Frame + Desktop Executive Credential Column -->
           <div class="visiting-column-wrap">
             <div class="card-frame visiting-card-frame" id="visitingCardBox">
+              <span class="card-badge-pill">VISITING CARD</span>
               <img src="Images/visitingCard.png" alt="Santosh Maurya Visiting Card" class="visiting-card-inner">
             </div>
 
