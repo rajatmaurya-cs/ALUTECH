@@ -548,11 +548,104 @@
 
     .visiting-card-inner {
       border-radius: 12px;
-      border: 1px solid rgba(0, 0, 0, 0.07);
+      border: 1px solid rgba(0, 0, 0, 0.08);
       box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
       width: 100%;
-      height: auto;
+      background: #ffffff;
+      padding: 18px 20px 18px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-sizing: border-box;
+      min-height: 200px;
+      position: relative;
+    }
+
+    .vc-top-row {
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-start;
+      margin-bottom: 12px;
+      padding-right: 135px; /* Shifted further left away from badge */
+    }
+
+    .vc-logo {
+      height: 38px;
+      width: auto;
+      max-width: 150px;
+      object-fit: contain;
       display: block;
+    }
+
+    .vc-person-section {
+      margin-bottom: 14px;
+    }
+
+    .vc-name {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: 0.3px;
+      line-height: 1.25;
+      margin-bottom: 2px;
+      font-family: inherit;
+    }
+
+    .vc-designation {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: #334155;
+      line-height: 1.3;
+      margin-bottom: 3px;
+    }
+
+    .vc-phone {
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: #0284c7;
+      text-decoration: none;
+      display: inline-block;
+      line-height: 1.3;
+      transition: color 0.15s ease;
+    }
+
+    .vc-phone:hover {
+      color: #0369a1;
+      text-decoration: underline;
+    }
+
+    .vc-contact-section {
+      font-size: 0.77rem;
+      line-height: 1.45;
+      color: #1e293b;
+    }
+
+    .vc-address {
+      color: #334155;
+      font-weight: 500;
+      margin-bottom: 5px;
+    }
+
+    .vc-meta-row {
+      margin-top: 2px;
+    }
+
+    .vc-label {
+      color: #0284c7;
+      font-weight: 700;
+      margin-right: 4px;
+    }
+
+    .vc-link {
+      color: #0f172a;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.15s ease;
+    }
+
+    .vc-link:hover {
+      color: #0284c7;
+      text-decoration: underline;
     }
 
     /* Floating Badges on Cards */
@@ -1500,7 +1593,30 @@
           <div class="visiting-column-wrap">
             <div class="card-frame visiting-card-frame" id="visitingCardBox">
               <span class="card-badge-pill">VISITING CARD</span>
-              <img src="Images/visitingCard.png" alt="Santosh Maurya Visiting Card" class="visiting-card-inner">
+              <div class="visiting-card-inner">
+                <div class="vc-top-row">
+                  <img src="Images/logo.png" alt="ALUTECH - Elegance Redefined" class="vc-logo">
+                </div>
+                <div class="vc-person-section">
+                  <div class="vc-name">SANTOSH MAURYA</div>
+                  <div class="vc-designation">Area Sales Manager</div>
+                  <a href="tel:+918448499830" class="vc-phone">+91 8448499830</a>
+                </div>
+                <div class="vc-contact-section">
+                  <div class="vc-address">
+                    C-3, Upper Ground Floor,<br>
+                    Shivaji Park, New Delhi- 110026
+                  </div>
+                  <div class="vc-meta-row">
+                    <span class="vc-label">Email :</span>
+                    <a href="mailto:Skm110086@gmail.com" class="vc-link">Skm110086@gmail.com</a>
+                  </div>
+                  <div class="vc-meta-row">
+                    <span class="vc-label">Web. :</span>
+                    <a href="https://www.alutechindia.com" target="_blank" rel="noopener noreferrer" class="vc-link">www.alutechindia.com</a>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <!-- Desktop Executive Address & Credentials Card (Hidden on mobile) -->
